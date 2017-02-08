@@ -1,0 +1,39 @@
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="css/styles.css" type="text/css">
+    <title>resume creator</title>
+</head>
+<body>
+  <div class="container">
+
+    <h1 class="jumbotron">Resume</h1>
+
+    {% if jobs is not empty %}
+            {% for job in jobs %}
+            <h4>{{ job.getTitle }}</h4>
+            <p> {{ job.getStartDate }} from {{ job.getEndDate }}</p>
+                    <ul>
+                <li>{{ job.getDescription }}</li>
+            </ul>
+            {% endfor %}
+    {% endif %}
+
+    <form action='/jobs' method='post'>
+        <label for='title'>Job Title</label>
+        <input id='title' name='title' type='text'> <br>
+        <label for='start-date'>Start Date</label>
+        <input id='start-date' name='start-date' type='date'> <br>
+        <label for='end-date'>End Date</label>
+        <input id='end-date' name='end-date' type='date'> <br>
+        <label for='description'>Job Description</label><br>
+        <textarea id='description' name='description' rows="5" cols="55"></textarea><br>
+
+        <button type='submit'>Add Job</button>
+    </form>
+    <form action='/delete_jobs' method='post'>
+        <button type='submit'>Clear</button>
+    </form>
+  </div>
+</body>
+</html>
